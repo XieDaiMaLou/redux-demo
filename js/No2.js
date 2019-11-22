@@ -35,7 +35,7 @@ function reducer(state = { number: 0}, action) {
     switch(action.type) {
         case 'INCREMENT':
             return {
-                number: state.number + action.payload
+                number: state.number + action.num
             }
         default:
             return state
@@ -50,6 +50,6 @@ store.subscribe(_ => {
     console.log('现在的state是', store.getState());
 })
 
-store.dispatch({ type: 'INCREMENT', payload: 6 })
-store.dispatch({ type: 'INCREMENT', payload: 5 })
+store.dispatch({ type: 'INCREMENT', num: 6 })
+store.dispatch({ type: 'INCREMENT', num: 5 })
 store.dispatch({ number: 999 }) // 现在这个就不会生效了,state 还是上次修改返回的结果
