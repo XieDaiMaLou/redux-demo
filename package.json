@@ -1,0 +1,23 @@
+{
+  "name": "demo-redux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/XieDaiMaLou/redux-demo.git",
+  "author": "caolun <2853045654@qq.com>",
+  "scripts": {
+    "start": "webpack-dev-server --config ./webpack.config.js",
+    "build": "webpack --config ./webpack.config.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {}
+}
