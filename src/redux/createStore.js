@@ -1,10 +1,17 @@
 const createStore = (reducer, initState, enhancer) => {
     /*
+    * 有时候不想传入默认的state
+    * */
+    if(typeof initState === 'function') {
+        enhancer = initState
+        initState = undefined
+    }
+    /*
     * 增强器来增强createStore功能
     * */
     if(enhancer && typeof enhancer === 'function') {
         const newCreateStore = enhancer(createStore)
-        return newCreateStore(initState)
+        return newCreateStore(reducer, initState)
     }
     let state = initState,
         listeners = [];

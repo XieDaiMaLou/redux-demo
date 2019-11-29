@@ -12,6 +12,13 @@
 import { applyMiddleware } from './redux'
 
 const createStore = (reducer, initState, enhancer) => {
+    /*
+    * 有时候不想传入默认的state
+    */
+    if(typeof initState === 'function') {
+        enhancer = initState
+        initState = undefined
+    }
     if(enhancer && typeof enhancer === 'function') {
         const newCreateStore = enhancer(createStore)
         return newCreateStore(reducer, initState)
@@ -73,6 +80,6 @@ const printNumber = store => next => action => {
 }
 
 // const store = applyMiddleware(printState, printTime, printNumber)(createStore)(reducer, initState)
-const store = createStore(reducer, initState, applyMiddleware(printState, printTime, printNumber))
+const store = createStore(reducer, applyMiddleware(printState, printTime, printNumber))
 
 store.dispatch({ type: 'INCREMENT', num: 6 })

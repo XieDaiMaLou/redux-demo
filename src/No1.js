@@ -2,7 +2,6 @@
  * 
  * @param {初始state} initState 
  * NO1.最简单版本的
- * No2.对修改值添加约束
  */
 const createStore = (initState) => {
     let state = initState || {},

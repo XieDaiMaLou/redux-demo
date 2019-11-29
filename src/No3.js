@@ -9,7 +9,7 @@ import { combineReducers } from './redux'
  */
 
 const createStore = (reducer,initState) => {
-    let state = initState || {},
+    let state = initState,
         listeners = []
     function subscribe(fn) {
         listeners.push(fn)
@@ -96,7 +96,7 @@ const store = createStore(reducer)
 
 store.subscribe(_ => {
     const state = store.getState()
-    console.log(state.count, state.info);
+    console.log(state, state.count, state.info);
 })
 
 store.dispatch({
