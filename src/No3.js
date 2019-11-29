@@ -1,9 +1,10 @@
+import { combineReducers } from './redux'
 
 /**
  * 
  * @param {初始state} initState 
  * NO1.最简单版本的
- * No2.对修改值添加约束
+ * No2.对修改值添加约束,并且增加取消订阅函数
  * No3.添加reducer拆分和合并(处理多个reducer)
  */
 
@@ -12,6 +13,10 @@ const createStore = (reducer,initState) => {
         listeners = []
     function subscribe(fn) {
         listeners.push(fn)
+        return function unsubscribe() {
+            const index = listeners.findIndex(f => f == fn)
+            listeners.splice(index, 1)
+        }
     }
     function dispatch(action) {
         state = reducer(state, action)
@@ -29,22 +34,22 @@ const createStore = (reducer,initState) => {
     }
 }
 
-function combineReducers(reducers) {
-    // 获取reducer名称数组[count, info]
-    const reducerKeyAry = Object.keys(reducers) 
-    return (state = {}, action) => {
-        const result = {}
-        // reducerKey: 分别是count info
-        reducerKeyAry.forEach(reducerKey => {
-            // 取出原reducer传入的state, 分别是 { number: 0}/ {title: '标题}
-            const oldState = state[reducerKey],
-            // 获取到每个reducer,分别是countReducer和infoReducer
-                oldReducer = reducers[reducerKey]
-            result[reducerKey] = oldReducer(oldState, action)
-        })
-        return result
-    }
-}
+// function combineReducers(reducers) {
+//     // 获取reducer名称数组[count, info]
+//     const reducerKeyAry = Object.keys(reducers)
+//     return (state = {}, action) => {
+//         const result = {}
+//         // reducerKey: 分别是count info
+//         reducerKeyAry.forEach(reducerKey => {
+//             // 取出原reducer传入的state, 分别是 { number: 0}/ {title: '标题}
+//             const oldState = state[reducerKey],
+//             // 获取到每个reducer,分别是countReducer和infoReducer
+//                 oldReducer = reducers[reducerKey]
+//             result[reducerKey] = oldReducer(oldState, action)
+//         })
+//         return result
+//     }
+// }
 const countState = {
     number: 1
 }
@@ -83,7 +88,7 @@ function infoReducer(state, action) {
 //         title: '标题'
 //     }
 // }
-const reducer = combineReducers({ 
+const reducer = combineReducers({
     count: countReducer, 
     info: infoReducer 
 })
