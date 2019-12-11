@@ -16,5 +16,7 @@ jobs:
       run: |
         yarn install
         yarn build --if-present
+    - name: echo some log
+      run: echo 'hello world'
       env:
         CI: true
