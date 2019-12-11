@@ -2,7 +2,9 @@ const path =require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+console.log(process.env.NODE_ENV);
 module.exports = {
+    mode: process.env.NODE_ENV,
     entry: path.join(__dirname, './src/index.js'),
     output: {
         filename: "[name].js",

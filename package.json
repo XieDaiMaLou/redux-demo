@@ -5,8 +5,8 @@
   "repository": "https://github.com/XieDaiMaLou/redux-demo.git",
   "author": "caolun <2853045654@qq.com>",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js",
-    "build": "webpack --config ./webpack.config.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.js"
   },
   "license": "MIT",
   "devDependencies": {
