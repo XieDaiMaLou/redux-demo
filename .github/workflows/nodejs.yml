@@ -19,7 +19,7 @@ jobs:
         node-version: 8.x
     - name: yarn, build
       run: |
-        yarn ci
+        yarn
         yarn build --if-present
       env:
         CI: true
